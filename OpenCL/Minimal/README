@@ -9,6 +9,9 @@ making changes if you'll be using this code as a starting point for
 something more complicated.
 
 Linux: You can compile with a simple "make", and then execute OpenCLMinimal.
+Note that you may need to update the include path in Makefile to point 
+to a location where your CL/opencl.h may be found (on my machine it 
+happened to be in /usr/local/cuda/include).
 
 Windows: Open the Visual Studio 2010 project OpenCLMinimal.vcxproj and
 hit F5.  You may first want to set a breakpoint at the last statement
