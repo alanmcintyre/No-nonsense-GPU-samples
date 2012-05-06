@@ -204,12 +204,6 @@
     </CustomBuildStep>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OpenCLTemplate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="kernelCommon.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="OpenCLTemplate.vcxproj">
       <Project>{a0dbd88c-b093-47e9-83f8-db84595c6546}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -220,12 +214,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="kernelTemplate.cl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </None>
+    <None Include="kernel.cl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OpenCLMinimal.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
