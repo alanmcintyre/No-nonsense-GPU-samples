@@ -10,8 +10,8 @@ int main(int const /*argc*/, char const** /*argv*/)
     // does for each element, you may want to alter the blocksize.  Of
     // course, if you aren't processing 32k elements, you need to adjust
     // the number of blocks and block size accordingly.
-    unsigned int const blockSize = 512;
-    unsigned int const blocks = 64;
+    size_t const blockSize = 512;
+    size_t const blocks = 64;
     size_t const dimension = blocks*blockSize;
 
     // Get the list of platforms.
