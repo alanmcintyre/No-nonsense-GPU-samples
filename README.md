@@ -20,4 +20,9 @@ If you find a bug, can think of a way to make one of the samples
 clearer, or if you can think of some other samples that would be
 useful, please let me know.
 
-For now, I've only tested these samples on NVIDIA hardware.
+I've only run these samples on NVIDIA GTX 680 and Radeon 6870HD, so please
+let me know if you encounter any issues on other hardware.
+
+The samples with "Win8" at the end of the folder name were built with Visual
+Studio 2012 on Windows 8/DirectX11.1.  They should run with minor modification
+on DirectX11 and/or Visual Studio 2010.  
