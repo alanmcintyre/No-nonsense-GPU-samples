@@ -1,8 +1,7 @@
-CC = g++
+include ../opencl-config.mk
 
 OpenCLMinimal: OpenCLMinimal.cpp
-	$(CC) OpenCLMinimal.cpp -g -Wall -I/usr/local/cuda/include -o OpenCLMinimal -lOpenCL -lstdc++
-
+	$(CC) OpenCLMinimal.cpp -g -Wall -I$(OPENCL_INCLUDE) -o OpenCLMinimal -lOpenCL -lstdc++
 
 clean:
 	rm -f OpenCLMinimal

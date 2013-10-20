@@ -166,34 +166,37 @@ int main(int const /*argc*/, char const** /*argv*/)
 
     // Allocate memory on the device for vector x (read-only to the kernel)
     cl_mem devXmem = clCreateBuffer(context,
-                                    CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, dimension*sizeof(cl_float),
+                                    CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+				    dimension*sizeof(cl_float),
                                     x, &r);
     if (0 == devXmem || CL_SUCCESS != r)
     {
-        printf("clCreateBuffer failed with return value %p and code %d\n",
-               devXmem, r);
+        printf("devXmem's clCreateBuffer failed with return value %p "
+	       "and code %d\n", devXmem, r);
         return r;
     }
 
     // Allocate memory on the device for vector y (read-only to the kernel)
     cl_mem devYmem = clCreateBuffer(context,
-                                    CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, dimension*sizeof(cl_float),
+                                    CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 
+				    dimension*sizeof(cl_float),
                                     y, &r);
     if (0 == devYmem || CL_SUCCESS != r)
     {
-        printf("clCreateBuffer failed with return value %p and code %d\n",
-               devXmem, r);
+        printf("devYmem's clCreateBuffer failed with return value %p "
+	       "and code %d\n", devXmem, r);
         return r;
     }
 
     // Allocate memory on the device for vector z (write-only to the kernel)
     cl_mem devZmem = clCreateBuffer(context,
-                                    CL_MEM_WRITE_ONLY, dimension*sizeof(cl_float),
-                                    y, &r);
+                                    CL_MEM_WRITE_ONLY, 
+				    dimension*sizeof(cl_float),
+                                    NULL, &r);
     if (0 == devZmem || CL_SUCCESS != r)
     {
-        printf("clCreateBuffer failed with return value %p and code %d\n",
-               devXmem, r);
+        printf("devZmem's clCreateBuffer failed with return value %p "
+	       "and code %d\n", devXmem, r);
         return r;
     }
 
