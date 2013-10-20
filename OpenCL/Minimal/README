@@ -1,4 +1,4 @@
-This is a minimal OpenCL example (in C++) that fills two input buffers
+This is a minimal OpenCL example (in C99) that fills two input buffers
 with data, copies this data to the GPU, performs a "saxpy" (z=a*x+y)
 operation on two buffers of single-precision floating point numbers,
 reads the results back and compares them to results calculated on the
@@ -8,10 +8,14 @@ There are TODO comments in places where you might want to consider
 making changes if you'll be using this code as a starting point for
 something more complicated.
 
-Linux: You can compile with a simple "make", and then execute OpenCLMinimal.
-Note that you may need to update the include path in Makefile to point 
-to a location where your CL/opencl.h may be found (on my machine it 
-happened to be in /usr/local/cuda/include).
+Linux: You can compile with a simple "make", and then execute
+OpenCLMinimal.  Note that you may need to update the include path
+OPENCL_INCLUDE in opencl-config.mk (located in the parent directory)
+to point to a location where your CL/opencl.h may be found (on my
+machine it happened to be in /opt/AMDAPP/include).  There is a script
+find-opencl.sh in the parent directory that may be useful in finding
+the OpenCL headers; this script will list any directories that appear
+to be suitable to use for OPENCL_INCLUDE.
 
 Windows: Open the Visual Studio 2010 project OpenCLMinimal.vcxproj and
 hit F5.  You may first want to set a breakpoint at the last statement

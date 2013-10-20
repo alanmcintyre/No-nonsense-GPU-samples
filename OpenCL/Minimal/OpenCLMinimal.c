@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <CL/opencl.h>
 
-int main(int const /*argc*/, char const** /*argv*/)
+int main()
 {
     // This example operates on buffers of size 32k elements, processing
     // blocks of 512 elements at a time.
@@ -89,14 +89,14 @@ int main(int const /*argc*/, char const** /*argv*/)
         printf("Unable to seek to beginning of kernel source file\n");
         return 3;
     }
-    char* kernelSource = new char[kernelSize+1];
+    char* kernelSource = (char*) malloc(kernelSize+1);
     r = fread(kernelSource, 1, kernelSize, kernelFile);
     // NOTE: if the file is not opened in binary mode, the value
     // returned by ftell is not guaranteed to be the exact number
     // of bytes from the beginning of the file.
     if (kernelSize != r)
     {
-        delete[] kernelSource;
+        free(kernelSource);
         printf("Unable to read kernel source (%d items read instead of %ld)\n",
                r, kernelSize);
         return 4;
@@ -110,7 +110,7 @@ int main(int const /*argc*/, char const** /*argv*/)
                          &sourceLines[0], NULL, &r);
 
     // Dispose of the kernel source we loaded from file.
-    delete[] kernelSource;
+    free(kernelSource);
     kernelSource = NULL;
 
     if (0 == program || CL_SUCCESS != r)
@@ -152,16 +152,16 @@ int main(int const /*argc*/, char const** /*argv*/)
     }
 
     // Allocate host memory for input and output vectors
-    float* x = new float[dimension];
-    float* y = new float[dimension];
-    float* z = new float[dimension];
+    float* x = (float*) malloc(sizeof(float) * dimension);
+    float* y = (float*) malloc(sizeof(float) * dimension);
+    float* z = (float*) malloc(sizeof(float) * dimension);
 
     // Set values to something easy to verify
     for (unsigned int i = 0; i < dimension; ++ i)
     {
-        x[i] = static_cast<float>(i);
-        y[i] = 100 - static_cast<float>(i);
-        z[i] = -static_cast<float>(i);
+        x[i] = (float) i;
+        y[i] = 100 - (float) i;
+        z[i] = - (float) i;
     }
 
     // Allocate memory on the device for vector x (read-only to the kernel)
@@ -264,11 +264,11 @@ int main(int const /*argc*/, char const** /*argv*/)
     printf("Computation appears to have completed successfully.\n");
 
     // Free memory
-    delete[] x;
+    free(x);
     x = NULL;
-    delete[] y;
+    free(y);
     y = NULL;
-    delete[] z;
+    free(z);
     z = NULL;
 
     // Free device memory
